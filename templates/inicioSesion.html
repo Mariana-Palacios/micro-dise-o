@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-form">
+  <div class="wrapper">
+    <div class="title"><span>Inicia ya!</span></div>
+    <form method="POST" action="">
+      {{ form.hidden_tag }
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="correo" required> 
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        {{ form.contrasena }}
+        <input type="password" placeholder="{{ form.contrasena.label }}" required>
+      </div>
+      <div class="pass"><a href="{{ url_for('registro') }}">Olvidaste tu contraseña?</a></div>
+      <div class="row button">
+        <input type="submit" value="Iniciar Sesion">
+      </div>
+      <div class="signup-link">No tienes cuenta? <a href="{{ url_for('registro') }}">Registrate ahora</a></div>
+    </form>
+  </div>
+</div>
+{% endblock %}
