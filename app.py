@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, url_for
-from forms import LoginForm, PostForm
+from flask import Flask, render_template, request, url_for, flash
+from forms import RegistroForm, InicioForm, PostForm
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ app.config['SECRET_KEY']='25bc741c9b5d0fff1d69f1281da69b31'
 #@app.route("/", methods=['GET', 'POST'])
 @app.route('/')
 def home():
-    form = LoginForm()
+    form = InicioForm()
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -17,7 +17,10 @@ def home():
 
 @app.route("/registro")
 def registro():
-    form= FormularioRegistro()
+    form= RegistroForm()
+    if form.validate_on_submit():
+        flash(f'La cuenta de {form.name.data}, esta registrada')
+        return redirect(url_for('home'))
     return render_template('registro.html',title='registro', form='form')
 
 @app.route("/admin/post/", methods=['GET', 'POST'], defaults={'post_id': None})
