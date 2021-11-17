@@ -1,4 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>HOLA MUNDO DE LA VERGA</h1>
+<div class="container-form">
+    <div class="wrapper">
+      <div class="title"><span>Registrate ya!</span></div>
+        <form action="" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          <p>
+              {{ form.username.label }}<br>
+              {{ form.username(size=32) }}
+          </p>
+          <p>
+              {{ form.password.label }}<br>
+              {{ form.password(size=32) }}
+          </p>
+          <p>
+                {{ form.confirm_password.label }}<br>
+                {{ form.confirm_password(size=32) }}
+          </p>
+          
+          <p>{{ form.submit() }}</p>
+      </form>
+    </div>
+</div>
 {% endblock %}

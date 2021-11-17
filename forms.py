@@ -11,9 +11,8 @@ class InicioForm(FlaskForm):
 class RegistroForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
-    confirm_password = PasswordField('Contraseña', validators=[DataRequired(), EqualTo('password')])
-    remember_me = BooleanField('Recuperar contaseña')
-    submit = SubmitField('Iniciar Sesion')
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Registratse')
 
 class PostForm(FlaskForm):
     title = StringField('Título', validators=[DataRequired(), Length(max=128)])
