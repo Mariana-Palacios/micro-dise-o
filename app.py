@@ -1,36 +1,25 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from forms import RegistroForm, InicioForm, PostForm
+
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY']='25bc741c9b5d0fff1d69f1281da69b31'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
-class Usuario(db.Model):
-    id = db.Column(db.Interger, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(20), unique=True, nullable=False)
-    imagen_perfil = db.Column(db.String(20), nullable=False, 'sin_imagen.jpg')
-
-class Post(db.Model):
-    id = db.Column(db.Interger, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-
-    def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.email}' )"
+from dbUsuario import Usuario, Post
 
 #@app.route("/", methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def home():
     form = InicioForm()
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+        #name = request.form['name']
+        #email = request.form['email']
+        #password = request.form['password']
         return redirect(url_for('post_form'))
     return render_template('inicioSesion.html', form=form)
 
