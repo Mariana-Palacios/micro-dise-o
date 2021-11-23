@@ -6,11 +6,11 @@
         <form action="" method="post" novalidate>
           {{ form.hidden_tag() }}
           <p>
-              {{ form.username.label }}<br>
-              {% for error in form.username.errors %}
+              {{ form.usuario.label }}<br>
+              {% for error in form.usuario.errors %}
                     <span style="color: red;">{{ error }}</span>
               {% endfor %}
-              {{ form.username(size=32) }}
+              {{ form.usuario(size=32) }}
               
           </p>
           <p>
@@ -28,11 +28,11 @@
               {{ form.password(size=32) }}             
           </p>
           <p>
-                {{ form.confirm_password.label }}<br>
-                {% for error in form.confirm_password.errors %}
+                {{ form.confirmar_password.label }}<br>
+                {% for error in form.confirmar_password.errors %}
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
-                {{ form.confirm_password(size=32) }}
+                {{ form.confirmar_password(size=32) }}
           </p>
           
           <p>{{ form.submit() }}</p>
