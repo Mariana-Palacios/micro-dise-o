@@ -4,30 +4,30 @@ from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationE
 from watter.dbUsuario import Usuario
 
 class InicioForm(FlaskForm):
-    usuario = StringField('Usuario', validators=[DataRequired()])
+    username = StringField('Usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     recuperar = BooleanField('Recuperar contaseña')
     submit = SubmitField('Iniciar Sesion')
 
 class RegistroForm(FlaskForm):
-    usuario = StringField('Usuario', validators=[DataRequired()])
+    username = StringField('Usuario', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     confirmar_password = PasswordField('Confirmar contraseña', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Registratse')
+    submit = SubmitField('Registrarse')
 
-    def verificacion_usuario(self, usuario):
-        user = User.query.filter_by(nombre=usuario.data).first()
+    def validate_username(self, username):
+        user = Usuario.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError('That username is taken. Please choose a different one.')
+            raise ValidationError(f'El usuario {username.data}')
     
     #verificar si el correo existe 
-    def verificacion_email(self, email):
+    def validate_email(self, email):
 
         correo = Usuario.query.filter_by(email=email.data).first()
 
         if correo:
-            raise ValidationError('El correo, ya existe porfavor ingrese otro correo')
+            raise ValidationError(f'El correo {email.data}')
 
 class PostForm(FlaskForm):
     title = StringField('Título', validators=[DataRequired(), Length(max=128)])

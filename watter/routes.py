@@ -19,10 +19,10 @@ def registro():
     form= RegistroForm()
     if form.validate_on_submit():
         hash_p = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        nuevoUsuario = Usuario(nombre=form.usuario.data, email=form.email.data, password=hash_p)
+        nuevoUsuario = Usuario(username=form.username.data, email=form.email.data, password=hash_p)
         db.session.add(nuevoUsuario)
         db.session.commit()
-        flash(f'{form.usuario.data}, ha sido registrado con exito!')
+        flash(f'{form.username.data}, ha sido registrado con exito!')
         return redirect(url_for('post_form'))
     return render_template('registro.html', form=form)
 
