@@ -6,8 +6,9 @@ from watter.dbUsuario import Usuario
 class InicioForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
-    recuperar = BooleanField('Recuperar contaseña')
+    remember = BooleanField('Recuperar contaseña')
     submit = SubmitField('Iniciar Sesion')
+    email = StringField('Email', validators=[DataRequired(), Email()])
 
 class RegistroForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])

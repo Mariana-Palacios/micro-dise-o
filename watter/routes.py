@@ -2,15 +2,17 @@ from watter import app, bcrypt, db
 from watter.dbUsuario import Usuario, Post
 from watter.forms import RegistroForm, InicioForm, PostForm
 from flask import render_template, request, url_for, flash, redirect
+from flask_login import login_user, current_user, logout_user, login_required
+
 
 #@app.route("/", methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def home():
     form = InicioForm()
-    if request.method == 'POST':
-        #name = request.form['name']
-        #email = request.form['email']
-        #password = request.form['password']
+    if form.validate_on_submit():
+        usuario = Usuario.query.filter_by(email=form.email.data).first()
+        if usuario and bcrypt.check_password_hash(usuario.password, form.password.data):
+            login_user(usuario, remember=form.remember.data)
         return redirect(url_for('post_form'))
     return render_template('inicioSesion.html', form=form)
 

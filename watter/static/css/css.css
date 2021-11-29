@@ -53,11 +53,6 @@ html{
    
 }
 
-.nav-center img{
-    display: block; 
-    float: left; 
-}
-
 .icons-nav{
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
@@ -92,14 +87,6 @@ header{
 }
 
 
-.nav-center:hover{
-    background-color: #3572B9;
-    color: #FDF6DA;
-}
-
-.nav-center img:hover{
-    transform: rotate(360deg);
-}
 /* Fin navbar */
 
 /*Responsive navbar*/
@@ -127,32 +114,7 @@ header{
 
 @media(max-width:768px){
  
-    .nav-center{
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background-color: #fff;
-        border-top: .1rem solid rgba(0,0,0,.2);
-        padding: 2rem;
-    }
-
-    .nav-center:hover{
-        background-color: #fff;
-    }
-
-    .nav-center img{
-        
-        display:none;
-    }
-
-    .nav-center a{
-        display: inline-flex;
-        padding: 1.5rem;
-        margin: 1rem;
-        font-size:2rem;
-        background-color: var(--light-skin);
-        vertical-align:middle;
-    }
-
+    
 
 }
 
